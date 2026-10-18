@@ -12,7 +12,7 @@ Windows 上运行小米手环原厂固件的 **待编译源码工程**，包含 
 安装 Windows x64 Python 3.11+、Git、MSYS2 UCRT64 开发工具，依赖列表见 [构建说明](docs/BUILD.md)。在项目根目录运行：
 
 ```powershell
-.\Build.cmd -Toolchain C:\msys64 -Model all
+.\build.cmd -Toolchain C:\msys64 -Model all
 ```
 
 首次构建会展开固定版本的 QEMU 公共源码，应用型号覆盖文件并逐文件校验，再分别编译。产物在 `.build/<型号>/build/qemu-system-arm.exe`。修改硬件代码可编辑 `source/overlays/<型号>/`；缓存更新规则见构建说明。
@@ -43,7 +43,7 @@ python -B tools/assemble_runtime.py --toolchain C:/msys64 `
 ## 结构
 
 ```text
-Build.cmd                    编译入口
+build.cmd                    编译入口
 tools/                       还原、编译、镜像生成、统一运行工具
 models/                      两型号的适配器、原生控制窗口、两份演示配置
 shared/                      HCI、屏幕预览及公共 UI 源码

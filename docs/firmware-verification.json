@@ -22,5 +22,9 @@
       "fresh_images_match_verified_baseline": true,
       "fresh_images_verified": 2
     }
-  }
+  },
+  "build_entry": "build.cmd",
+  "toolchain_check_passed": true,
+  "runtime_launcher_generated": true,
+  "remote_script_cleanup_preserved": true
 }

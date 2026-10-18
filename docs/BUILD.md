@@ -23,8 +23,8 @@ QEMU configure 可能下载 Python 构建依赖或缺少的子项目。运行时
 PowerShell，在项目根目录：
 
 ```powershell
-.\Build.cmd -Toolchain C:\msys64 -CheckOnly
-.\Build.cmd -Toolchain C:\msys64 -BuildRoot C:\build\miband -Model all -Jobs 4
+.\build.cmd -Toolchain C:\msys64 -CheckOnly
+.\build.cmd -Toolchain C:\msys64 -BuildRoot C:\build\miband -Model all -Jobs 4
 ```
 
 也可单独选 `band11` 或 `band10pro`。省略 `-BuildRoot` 使用仓库内 `.build`。建议源码、工具链与构建目录使用 ASCII 路径。

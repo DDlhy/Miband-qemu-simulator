@@ -69,8 +69,13 @@ def assemble(args):
     with tempfile.TemporaryDirectory(prefix=output.name + '-assembling-', dir=output.parent) as work:
         stage = Path(work) / 'runtime'
         stage.mkdir()
-        for name in ('Launch.cmd', '启动模拟器.cmd', 'LICENSE', 'NOTICE.md'):
+        for name in ('LICENSE', 'NOTICE.md'):
             shutil.copy2(ROOT / name, stage / name)
+        launcher = ('@echo off\n'
+                    'cd /d "%~dp0"\n'
+                    'start "" powershell.exe -NoProfile -ExecutionPolicy Bypass -STA '
+                    '-WindowStyle Hidden -File "%~dp0tools\\Launcher.ps1"\n')
+        (stage / 'Launch.cmd').write_text(launcher, encoding='ascii', newline='\r\n')
         shutil.copytree(ROOT / 'models', stage / 'models', ignore=shutil.ignore_patterns(
             'userdata', 'artifacts', 'core', 'firmware', '__pycache__', '*.original'))
         shutil.copytree(ROOT / 'shared', stage / 'shared', ignore=shutil.ignore_patterns('__pycache__'))
