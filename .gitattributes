@@ -1,0 +1,2 @@
+# Preserve pinned archive, source and PowerShell BOM bytes across checkouts.
+* -text

@@ -1,0 +1,32 @@
+{
+  "qemu": {
+    "version": "11.1.50",
+    "base_file_count": 11540,
+    "band11_overlay_files": 20,
+    "removed_obsolete_backups": [
+      "hw/arm/xiaomi-q66.c.pre-cmu-ready",
+      "hw/arm/xiaomi-q66.c.pre-stacktest"
+    ],
+    "archives": [
+      {
+        "archive": "qemu-common.tar.xz",
+        "sha256": "ee173d5c0fd66b6bb24a214248e71e334b732355d5e66083d46752c2cadec9e9",
+        "files": 7258
+      },
+      {
+        "archive": "qemu-support.tar.xz",
+        "sha256": "aa4d0180815aa68622bf05e18d5287c2c53eb5d0a579a3fa42424f517adac915",
+        "files": 4282
+      }
+    ],
+    "restored_build_inputs": [
+      "pyvenv/meson.build"
+    ]
+  },
+  "bes_reference": {
+    "archive": "bes-reference.tar.xz",
+    "sha256": "79eca4cc67950b8cd3c8af27b6dcd63e0c4e70e2456252aeaf107071989895e1",
+    "upstream": "https://github.com/0x504B0304/bes-qemu",
+    "baseline": "e57911d5fa00d28a3f69321c7bdbdca5abda8016"
+  }
+}

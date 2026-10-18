@@ -1,0 +1,28 @@
+{
+  "band11": {
+    "name": "小米手环 11 NFC",
+    "board": "q66nfc",
+    "pid": 34835,
+    "firmware": "4.100.139",
+    "display": [
+      212,
+      520
+    ],
+    "runner": "run_offline.py",
+    "bluetooth_runner": "run_raw_bluetooth.py",
+    "rotation": false
+  },
+  "band10pro": {
+    "name": "小米手环 10 Pro",
+    "board": "p67cn",
+    "pid": 29598,
+    "firmware": "3.101.043",
+    "display": [
+      336,
+      480
+    ],
+    "runner": "run_p67.py",
+    "bluetooth_runner": "run_p67.py",
+    "rotation": true
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-18",
+  "kind": "source-build-and-fresh-images",
+  "toolchain": {
+    "gcc": "16.2.0",
+    "meson": "1.12.1",
+    "ninja": "1.13.2",
+    "python_build": "3.14.8",
+    "python_runtime": "3.11.9",
+    "littlefs_python": "0.19.0"
+  },
+  "launcher_models_verified": true,
+  "image_layout_verified": true,
+  "bluetooth_retested": false,
+  "ota_retested": false,
+  "models": {
+    "band11": {
+      "source_files": 11560,
+      "core_sha256": "256413eceaf8c2a02430925e239f3342b004a6d6e9a97f8f898f2fcfff0938e8",
+      "fresh_storage_boot_to_language": true,
+      "touch_to_connection_page": true,
+      "touch": {
+        "received": 2,
+        "acknowledged": 2,
+        "dropped": 0,
+        "queued": 0
+      },
+      "qemu_exit_code": 0,
+      "images": [
+        {
+          "path": "models/band11/config/factory/q66nfc.img",
+          "size": 131072,
+          "sha256": "46ca2635d62d927b2642f28e8fc3d5aa5c6c78edbdbca3dad2697baf515e1b02"
+        },
+        {
+          "path": "models/band11/userdata/nand-bluetooth-nor.img",
+          "size": 16777216,
+          "sha256": "3be5238a0f551338f27c2b9e155472e1b8fca427e5d6193e455d4c217d7d3bd7"
+        },
+        {
+          "path": "models/band11/userdata/nand-bluetooth-resource.img",
+          "size": 142606336,
+          "sha256": "1025c17e3a3450488c07bfc766f9dfb37dc896bb3bbfe87f0b06f5599301c41a"
+        },
+        {
+          "path": "models/band11/userdata/nand-bluetooth.img",
+          "size": 142606336,
+          "sha256": "b63fef27e3040818c7abd167949692272a36bb37c741043e34e530dc53fa63de"
+        }
+      ]
+    },
+    "band10pro": {
+      "source_files": 11648,
+      "core_sha256": "d948d7c3c6f1f41c215b91a084a01ff409b82d217a7fc42e24f60f84d207591a",
+      "fresh_storage_boot_to_language": true,
+      "touch_to_connection_page": true,
+      "touch": {
+        "received": 2,
+        "acknowledged": 2,
+        "queued": 0,
+        "sleeping": false
+      },
+      "qemu_exit_code": 0,
+      "images": [
+        {
+          "path": "models/band10pro/config/factory/nv.img",
+          "size": 131072,
+          "sha256": "1aa024ecaf77feae511a05cdd7e387b43e502613d756497224b98291e96f396e"
+        },
+        {
+          "path": "models/band10pro/config/factory/nor-seed.bin",
+          "size": 16777216,
+          "sha256": "b46d2a36cb274ea6311b80622b42d19bb016f29bf29c089a0ed7a36c9a72808c"
+        }
+      ]
+    }
+  }
+}

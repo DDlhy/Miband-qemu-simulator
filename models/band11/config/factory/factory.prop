@@ -1,0 +1,16 @@
+# Public demo identity. Replace locally; do not commit real factory credentials.
+ro.factory.board_id=1
+persist.boardid=1
+ro.factory.model=miwear.watch.q66nfc
+ro.factory.pid=34835
+ro.factory.fsn=DEMO11NFC00001
+ro.factory.mac_bt=02:00:00:11:00:01
+ro.factory.did=1000000011
+ro.factory.psn=00000/DEMO11NFC00001
+ro.factory.psk=0000000000000000
+ro.gauge.gain=6980
+ro.gauge.offset=44986
+ro.factory.battery_id=1
+persist.batteryid=1
+ro.factory.als_gain=900
+ro.factory.als_offset=0

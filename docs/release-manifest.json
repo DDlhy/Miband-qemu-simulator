@@ -1,0 +1,41 @@
+{
+  "format": 2,
+  "project": "Miband-qemu-simulator",
+  "date": "2026-10-18",
+  "models": {
+    "band11": {
+      "name": "小米手环 11 NFC",
+      "board": "q66nfc",
+      "pid": 34835,
+      "firmware": "4.100.139",
+      "display": [
+        212,
+        520
+      ],
+      "runner": "run_offline.py",
+      "bluetooth_runner": "run_raw_bluetooth.py",
+      "rotation": false
+    },
+    "band10pro": {
+      "name": "小米手环 10 Pro",
+      "board": "p67cn",
+      "pid": 29598,
+      "firmware": "3.101.043",
+      "display": [
+        336,
+        480
+      ],
+      "runner": "run_p67.py",
+      "bluetooth_runner": "run_p67.py",
+      "rotation": true
+    }
+  },
+  "public_identity_files": {
+    "models/band11/config/factory/factory.prop": "e869cd35a6d72e45645cedb3352c63a077fe3499a846ae7c1aea136c7d288482",
+    "models/band10pro/config/factory/factory.prop": "2ac9b8b9953cb389e3def7ba20bbad8d69c720385628cbdcc191d9aa608e144f"
+  },
+  "source_layout": "compressed common source plus visible model overlays",
+  "bluetooth_retested": false,
+  "kind": "source",
+  "images": "generated from external stock firmware and text factory properties"
+}
