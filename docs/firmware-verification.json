@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-18",
+  "kind": "bundled-firmware-and-fresh-images",
+  "default_firmware_arguments_used": true,
+  "cores_changed": false,
+  "models": {
+    "band11": {
+      "version": "4.100.139",
+      "archive_sha256": "e21ac4826a4d2641a14b03072548358f1733b10db964188b01b5a60c2315821a",
+      "parts": 3,
+      "all_stock_images_match": true,
+      "assembly_and_import_check_passed": true,
+      "fresh_images_match_verified_baseline": true,
+      "fresh_images_verified": 4
+    },
+    "band10pro": {
+      "version": "3.101.043",
+      "archive_sha256": "9308ae138cff2c572cf176d7183ecfd55bd01f12e0ed3ca62d8b01511c0c67ca",
+      "parts": 4,
+      "all_stock_images_match": true,
+      "assembly_and_import_check_passed": true,
+      "fresh_images_match_verified_baseline": true,
+      "fresh_images_verified": 2
+    }
+  }
+}

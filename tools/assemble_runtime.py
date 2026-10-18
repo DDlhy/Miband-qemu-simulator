@@ -1,4 +1,4 @@
-"""Assemble compiled cores, external firmware and NEW flash into a new directory."""
+"""Assemble compiled cores, stock firmware and NEW flash into a new directory."""
 import argparse
 import hashlib
 import json
@@ -10,6 +10,7 @@ import tempfile
 import zipfile
 
 from install_core import install
+from firmware_bundle import extract_bundle
 
 ROOT = Path(__file__).resolve().parents[1]
 IMAGES = ('vela_ap.bin', 'vela_resource.bin', 'vela_ota.bin', 'vela_bl2.bin')
@@ -28,9 +29,11 @@ def extract_zip(archive, destination):
                 shutil.copyfileobj(source, target)
 
 
-def firmware(source, destination):
+def firmware(source, destination, model=None):
     destination.mkdir(parents=True)
-    if source.is_dir():
+    if source.suffix.lower() == '.json' and source.is_file():
+        return extract_bundle(source, destination, expected_model=model)
+    elif source.is_dir():
         entries = {name: source / name for name in IMAGES if (source / name).is_file()}
         if not set(IMAGES[:3]).issubset(entries):
             raise ValueError('Firmware directory needs vela_ap.bin, vela_resource.bin, vela_ota.bin')
@@ -109,7 +112,7 @@ def assemble(args):
             prop = getattr(args, 'factory_' + model)
             if prop:
                 shutil.copy2(prop, model_root / 'config/factory/factory.prop')
-            images = firmware(getattr(args, 'firmware_' + model), model_root / 'firmware')
+            images = firmware(getattr(args, 'firmware_' + model), model_root / 'firmware', model)
             core = install(model, args.build_root / model / 'build/qemu-system-arm.exe',
                            args.toolchain / 'ucrt64/bin', stage)
             subprocess.run([str(py / 'python.exe'), '-X', 'utf8', '-B',
@@ -141,7 +144,10 @@ if __name__ == '__main__':
     fs.add_argument('--littlefs-wheel', type=Path)
     fs.add_argument('--littlefs-package', type=Path)
     for model in ('band11', 'band10pro'):
-        p.add_argument('--firmware-' + model, type=Path, help='Stock full OTA ZIP or extracted firmware directory')
+        bundled = ROOT / 'firmware' / model / 'manifest.json'
+        p.add_argument('--firmware-' + model, type=Path,
+                       default=bundled if bundled.is_file() else None,
+                       help='Stock OTA ZIP, extracted directory or bundle manifest; defaults to bundled firmware')
         p.add_argument('--factory-' + model, type=Path, help='Optional private factory.prop; otherwise use synthetic demo')
     p.add_argument('--intel-firmware', type=Path, help='Optional validated Intel SFI/DDC and licence directory')
     assemble(p.parse_args())

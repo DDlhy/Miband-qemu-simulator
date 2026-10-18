@@ -1,6 +1,6 @@
 # Mi Band QEMU Simulator
 
-Windows 上运行小米手环原厂固件的 **待编译源码工程**，包含 11 NFC 和 10 Pro。编译 QEMU 后，从对应固件和两份配置重新生成运行镜像。屏幕、触摸、原生传感器窗口及原始 HCI 蓝牙适配器的源码均保留。
+Windows 上运行小米手环原厂固件的 **待编译源码工程**，包含 11 NFC、10 Pro 及两型号的参考固件。编译 QEMU 后，从固件和两份配置重新生成运行镜像。屏幕、触摸、原生传感器窗口及原始 HCI 蓝牙适配器的源码均保留。
 
 | 型号参数 | 设备 / PID | 参考固件 | 屏幕 |
 | --- | --- | --- | --- |
@@ -19,14 +19,12 @@ Windows 上运行小米手环原厂固件的 **待编译源码工程**，包含 
 
 ## 生成全新运行目录和镜像
 
-准备两款设备各自的完整固件 ZIP（或含 `vela_ap.bin`、`vela_resource.bin`、`vela_ota.bin` 的目录）、Windows x64 CPython **3.11** embeddable ZIP、littlefs-python **0.19.0 cp311 win_amd64** wheel：
+仓库已包含两款设备的参考固件分卷，组装工具默认自动校验、合并使用。另准备 Windows x64 CPython **3.11** embeddable ZIP、littlefs-python **0.19.0 cp311 win_amd64** wheel：
 
 ```powershell
 python -B tools/assemble_runtime.py --toolchain C:/msys64 `
   --python-embed C:/inputs/python-3.11.9-embed-amd64.zip `
   --littlefs-wheel C:/inputs/littlefs_python-0.19.0-cp311-cp311-win_amd64.whl `
-  --firmware-band11 C:/inputs/band11-full.zip `
-  --firmware-band10pro C:/inputs/band10pro-full.zip `
   --output C:/build/miband-runtime
 ```
 
@@ -34,7 +32,7 @@ python -B tools/assemble_runtime.py --toolchain C:/msys64 `
 
 完成后双击输出目录中的 `Launch.cmd`，选择型号并离线启动。左键点击、按住拖动滑动，熄屏后快速双击唤醒。10 Pro 可在原生传感器窗口实时旋转。
 
-源码目录不包含 EXE、DLL、固件和运行镜像；以上依赖是构建输入。固件本身无法从 QEMU 源码编译生成，必须自行提供匹配的原厂文件。
+源码目录不包含预编译 EXE、DLL 和运行镜像；这些产物由构建生成。参考固件位于 [firmware/](firmware/README.md)，单份小于 25 MB，无需 Git LFS。若使用其他版本，可加 `--firmware-band11 <路径>`、`--firmware-band10pro <路径>`，输入完整 OTA ZIP、提取目录或分卷清单。原厂固件本身不从 QEMU 源码编译生成。
 
 ## 身份与蓝牙
 
@@ -52,6 +50,7 @@ shared/                      HCI、屏幕预览及公共 UI 源码
 source/overlays/band11/       11 NFC 模型和相关 QEMU 改动
 source/overlays/band10pro/    10 Pro 模型和相关 QEMU 改动
 vendor/                      固定版本公共源码归档和校验清单
+firmware/                    两型号参考固件分卷、版本和 SHA256 清单
 docs/                        构建、功能、身份及验证说明
 LICENSES/                    组件许可及来源说明
 ```

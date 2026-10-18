@@ -54,7 +54,9 @@ python -B tools/prepare_source.py --model band10pro --output C:/build/p67-source
 python -m pip download --only-binary=:all: --no-deps --platform win_amd64 --python-version 311 --implementation cp --abi cp311 littlefs-python==0.19.0 -d C:/inputs
 ```
 
-固件输入可为完整 OTA ZIP，或已经提取的目录，需有 `vela_ap.bin`、`vela_resource.bin`、`vela_ota.bin`，可选 `vela_bl2.bin`。生成器不执行包内升级脚本，出厂区生成会核对 AP 的型号配置。增量补丁包不能代替完整 AP/资源镜像。
+仓库 `firmware/` 已提供 11 NFC `4.100.139` 和 10 Pro `3.101.043` 的构建用固件分卷，每份小于 25 MB。默认使用对应型号的 `manifest.json`，无需手动下载固件或合并分卷。组装工具先核对各分卷及合并归档的 SHA256，再核对解压后的镜像大小和 SHA256。
+
+也可通过 `--firmware-band11 <路径>`、`--firmware-band10pro <路径>` 使用其他匹配的完整 OTA ZIP、提取目录或分卷清单。提取目录需有 `vela_ap.bin`、`vela_resource.bin`、`vela_ota.bin`，可选 `vela_bl2.bin`。生成器不执行包内升级脚本，出厂区生成会核对 AP 的型号配置。增量补丁包不能代替完整 AP/资源镜像。
 
 ## 重建镜像
 
@@ -62,8 +64,6 @@ python -m pip download --only-binary=:all: --no-deps --platform win_amd64 --pyth
 python -B tools/assemble_runtime.py --build-root C:/build/miband --toolchain C:/msys64 `
   --python-embed C:/inputs/python-3.11.9-embed-amd64.zip `
   --littlefs-wheel C:/inputs/littlefs_python-0.19.0-cp311-cp311-win_amd64.whl `
-  --firmware-band11 C:/inputs/band11-full.zip `
-  --firmware-band10pro C:/inputs/band10pro-full.zip `
   --output C:/build/miband-runtime
 ```
 

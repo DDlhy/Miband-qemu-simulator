@@ -1,4 +1,4 @@
-"""Export only the verified source files, with no build cache or runtime state."""
+"""Export verified source and stock firmware, without build cache or runtime state."""
 import argparse
 import json
 from pathlib import Path

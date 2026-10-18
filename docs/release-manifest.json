@@ -36,6 +36,10 @@
   },
   "source_layout": "compressed common source plus visible model overlays",
   "bluetooth_retested": false,
-  "kind": "source",
-  "images": "generated from external stock firmware and text factory properties"
+  "kind": "source-with-firmware",
+  "images": "generated from bundled or external stock firmware and text factory properties",
+  "bundled_firmware": {
+    "band11": "firmware/band11/manifest.json",
+    "band10pro": "firmware/band10pro/manifest.json"
+  }
 }

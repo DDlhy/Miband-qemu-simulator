@@ -1,8 +1,10 @@
-"""Check the clean source delivery and its two synthetic identity inputs."""
+"""Check source, bundled stock firmware and the two synthetic identity inputs."""
 import argparse
 import hashlib
 import json
 from pathlib import Path
+
+from firmware_bundle import verify_parts
 
 ROOT = Path(__file__).resolve().parents[1]
 EXCLUDE = {'.git', '.build', 'dist', '__pycache__', '.vs', '.idea'}
@@ -31,6 +33,20 @@ def check(verify_hashes=True):
     for name, value in identities.items():
         if sha(ROOT / name) != value:
             raise RuntimeError('Demo identity changed; supply private properties as external build inputs: ' + name)
+    firmware_files = {'firmware/README.md'}
+    bundles = record['bundled_firmware']
+    if bundles.keys() != record['models'].keys():
+        raise RuntimeError('Expected one firmware bundle per model')
+    for model, name in bundles.items():
+        if name != f'firmware/{model}/manifest.json':
+            raise RuntimeError('Unexpected firmware manifest path')
+        bundle = verify_parts(ROOT / name)
+        if bundle['model'] != model or bundle['version'] != record['models'][model]['firmware']:
+            raise RuntimeError('Firmware model/version differs from release manifest')
+        firmware_files.add(name)
+        firmware_files.update(f'firmware/{model}/' + part['file'] for part in bundle['archive']['parts'])
+    if {n for n in files if n.startswith('firmware/')} != firmware_files:
+        raise RuntimeError('Unexpected or missing files in bundled stock firmware')
     for name, path in files.items():
         if name.startswith(('runtime/', 'userdata/', 'shared/factory-python/', 'shared/controller-firmware/')) or '/userdata/' in name or '/artifacts/' in name:
             raise RuntimeError('Generated or private data mixed into source: ' + name)
@@ -48,7 +64,7 @@ def check(verify_hashes=True):
         for name, value in sums.items():
             if sha(files[name]) != value:
                 raise RuntimeError('Hash mismatch: ' + name)
-    return {'ok': True, 'kind': 'source', 'files': len(files),
+    return {'ok': True, 'kind': 'source-with-firmware', 'files': len(files),
             'bytes': sum(p.stat().st_size for p in files.values())}
 
 

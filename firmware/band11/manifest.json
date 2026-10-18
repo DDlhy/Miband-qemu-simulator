@@ -1,0 +1,43 @@
+{
+  "format": 1,
+  "model": "band11",
+  "version": "4.100.139",
+  "archive": {
+    "size": 66695099,
+    "sha256": "e21ac4826a4d2641a14b03072548358f1733b10db964188b01b5a60c2315821a",
+    "parts": [
+      {
+        "file": "firmware.zip.part001",
+        "size": 24000000,
+        "sha256": "daf0898eb12d2f974cfc9489aab7f3a1c605c817612168c373f7cd9964afc97e"
+      },
+      {
+        "file": "firmware.zip.part002",
+        "size": 24000000,
+        "sha256": "4f8c2a0851a3bfe9da94fd25f929b7e6b6ee0cfd0db78d238c789c5a3e8058e1"
+      },
+      {
+        "file": "firmware.zip.part003",
+        "size": 18695099,
+        "sha256": "7c18ab034ed57aa420b426c03240045552665be8104ab2edadd9d8446d92552f"
+      }
+    ]
+  },
+  "images": [
+    {
+      "file": "vela_ap.bin",
+      "size": 12304868,
+      "sha256": "31ce82257f7c127950dc5070b86316730cf468a41f0d004559e41e7d923b2c74"
+    },
+    {
+      "file": "vela_ota.bin",
+      "size": 786432,
+      "sha256": "bd274e88069ae2703ef3d748fedc352442ab75a5b8ef22f5aaeaac74b28caeb6"
+    },
+    {
+      "file": "vela_resource.bin",
+      "size": 120950784,
+      "sha256": "400897b682ebec68a09d34e4eae47a01cdbe544e21ca76df6c8eca60ab6718e0"
+    }
+  ]
+}

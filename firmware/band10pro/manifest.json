@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "model": "band10pro",
+  "version": "3.101.043",
+  "archive": {
+    "size": 90732964,
+    "sha256": "9308ae138cff2c572cf176d7183ecfd55bd01f12e0ed3ca62d8b01511c0c67ca",
+    "parts": [
+      {
+        "file": "firmware.zip.part001",
+        "size": 24000000,
+        "sha256": "49892d857c48d3089839819a4587e53df49ac678eb2a46ab34fa68c37eb6f678"
+      },
+      {
+        "file": "firmware.zip.part002",
+        "size": 24000000,
+        "sha256": "e520497868e12c56af33996a127498df19fb4d35dca6637cc545123be361186c"
+      },
+      {
+        "file": "firmware.zip.part003",
+        "size": 24000000,
+        "sha256": "5965379bb5f43dd5b1e00ed9cd1fa811d451cf30ee8ab079984d03376f91f3e7"
+      },
+      {
+        "file": "firmware.zip.part004",
+        "size": 18732964,
+        "sha256": "a4542d15ea2bc3008d7694bdb2cad0cae8b804e0593df9362f668750c7bdaf85"
+      }
+    ]
+  },
+  "images": [
+    {
+      "file": "vela_ap.bin",
+      "size": 13795728,
+      "sha256": "519307675665e4866d722a8119a98589c397b614ac3294cb87bfc86de45756ec"
+    },
+    {
+      "file": "vela_bl2.bin",
+      "size": 451468,
+      "sha256": "d5cb97b1e470152b7daed20c6d29491620edc5fefa072be3817e4dfd7ba964b2"
+    },
+    {
+      "file": "vela_ota.bin",
+      "size": 655360,
+      "sha256": "fcc7798dc078226e39a71905b0ceb84c72f3d5938f0589af86bcc36adeca7b62"
+    },
+    {
+      "file": "vela_resource.bin",
+      "size": 171755520,
+      "sha256": "e80a8772935814afbd56365e003521bf47f5b11eeeeaf3ff659536ce60bc6c78"
+    }
+  ]
+}
